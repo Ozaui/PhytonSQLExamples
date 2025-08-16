@@ -98,6 +98,55 @@ def basic_sql_query(cursor):
     for row in records:
         print(row[0], row[1])
 
+    print("--------------------------- courses -----------------")
+    cursor.execute("SELECT * FROM Courses")
+    records = cursor.fetchall()
+    for row in records:
+        print(row[0], row[1])
+
+    print("---------------------------Course Teacher and course name--------------------")
+    cursor.execute("SELECT CourseName, instructor FROM COURSES")
+    records = cursor.fetchall()
+    for row in records:
+        print(row[0], row[1])
+
+    print("--------------------------- only istanbul -----------------")
+    cursor.execute("SELECT * FROM Students WHERE city = 'New York'")
+    record = cursor.fetchall()
+    for row in record:
+        print(row[0], row[1], row[2])
+
+    print("--------------------------- only Dr. Anderson Courses -----------------")
+    cursor.execute("SELECT CourseName, instructor, credit FROM COURSES where"
+                   " instructor = 'Dr. Anderson'")
+    records = cursor.fetchall()
+    for row in records:
+        print(row[0], row[1])
+
+    print("--------------------------- only start name with a -----------------")
+    cursor.execute("SELECT StudentName, Surname FROM Students Where StudentName LIKE 'A%'")
+    records = cursor.fetchall()
+    for row in records:
+        print(row[0], row[1])
+
+    print("--------------------------- only credits upper than 3 -----------------")
+    cursor.execute("SELECT CourseName FROM COURSES where credit >= 3")
+    records = cursor.fetchall()
+    for row in records:
+        print(row[0])
+
+    print("--------------------------- sort students -----------------")
+    cursor.execute("SELECT StudentName, Surname FROM Students ORDER BY StudentName")
+    records = cursor.fetchall()
+    for row in records:
+        print(row[0], row[1])
+
+    print("--------------------------- sort students but they should be 20+ -----------------")
+    cursor.execute("SELECT StudentName, Surname FROM Students WHERE age > 20 ORDER BY StudentName ")
+    records = cursor.fetchall()
+    for row in records:
+        print(row[0], row[1])
+
 def sql_update_delete_insert_operations(cursor):
     # Insert (id vermiyoruz)
     cursor.execute("""
